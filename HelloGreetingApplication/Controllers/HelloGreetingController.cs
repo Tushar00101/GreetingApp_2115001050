@@ -1,14 +1,20 @@
 using Microsoft.AspNetCore.Mvc;
 using ModelLayer.Model;
 using NLog;
-
+using BusinessLayer.Interface;
 namespace HelloGreetingApplication.Controllers
 {
     [ApiController]
     [Route("[controller]")]
     public class HelloGreetingController : ControllerBase
     {
+        private readonly IGreetingBL _greetingBL;
         private static readonly Logger logger = LogManager.GetCurrentClassLogger();
+
+        public HelloGreetingController(IGreetingBL greetingBL)
+        {
+            _greetingBL = greetingBL;
+        }
 
         /// <summary>
         /// Get method to get the greeting message.
@@ -18,14 +24,8 @@ namespace HelloGreetingApplication.Controllers
         public IActionResult Get()
         {
             logger.Info("GET request received for greeting message.");
-            ResponseModel<string> responseModel = new ResponseModel<string>
-            {
-                Success = true,
-                Data = "Hello World",
-                Message = "Hello to Greeting App API endpoint"
-            };
             logger.Info("GET request processed successfully.");
-            return Ok(responseModel);
+            return Ok(_greetingBL.GetGreetingBL());
         }
 
         /// <summary>
@@ -37,14 +37,8 @@ namespace HelloGreetingApplication.Controllers
         public IActionResult Post(RequestModel requestModel)
         {
             logger.Info($"POST request received with Key: {requestModel.Key}, Value: {requestModel.Value}");
-            ResponseModel<string> responseModel = new ResponseModel<string>
-            {
-                Success = true,
-                Message = "Request received successfully",
-                Data = $"Key: {requestModel.Key} , Value: {requestModel.Value}"
-            };
             logger.Info("POST request processed successfully.");
-            return Ok(responseModel);
+            return Ok(_greetingBL.AddGreetingBL(requestModel));
         }
 
         /// <summary>
@@ -56,15 +50,8 @@ namespace HelloGreetingApplication.Controllers
         public IActionResult Put(RequestModel requestModel)
         {
             logger.Info($"PUT request received to update greeting to: {requestModel.Value}");
-            string _greetingMessage = requestModel.Value;
-            ResponseModel<string> responseModel = new ResponseModel<string>
-            {
-                Success = true,
-                Message = "Greeting message updated successfully",
-                Data = _greetingMessage
-            };
             logger.Info("PUT request processed successfully.");
-            return Ok(responseModel);
+            return Ok(_greetingBL.UpdateGreetingBL(requestModel));
         }
 
         /// <summary>
@@ -76,15 +63,8 @@ namespace HelloGreetingApplication.Controllers
         public IActionResult Patch(string newValue)
         {
             logger.Info($"PATCH request received to update greeting to: {newValue}");
-            string _greetingMessage = newValue;
-            ResponseModel<string> responseModel = new ResponseModel<string>
-            {
-                Success = true,
-                Message = "Greeting message partially updated",
-                Data = _greetingMessage
-            };
             logger.Info("PATCH request processed successfully.");
-            return Ok(responseModel);
+            return Ok(_greetingBL.PartialUpdateGreetingBL(newValue));
         }
 
         /// <summary>
@@ -95,15 +75,8 @@ namespace HelloGreetingApplication.Controllers
         public IActionResult Delete()
         {
             logger.Info("DELETE request received to remove the greeting message.");
-            string _greetingMessage = "";
-            ResponseModel<string> responseModel = new ResponseModel<string>
-            {
-                Success = true,
-                Message = "Greeting message deleted successfully",
-                Data = _greetingMessage
-            };
             logger.Info("DELETE request processed successfully.");
-            return Ok(responseModel);
+            return Ok(_greetingBL.DeleteGreetingBL());
         }
     }
 }
