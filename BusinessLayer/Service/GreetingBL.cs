@@ -2,6 +2,7 @@
 using BusinessLayer.Interface;
 using ModelLayer.Model;
 using NLog;
+using RepositoryLayer.Interface;
 
 namespace BusinessLayer.Service
 {
@@ -9,6 +10,12 @@ namespace BusinessLayer.Service
     {
         private static readonly Logger logger = LogManager.GetCurrentClassLogger();
         private string _greetingMessage = "Hello World";
+        private readonly IGreetingRL _greetingRL;
+
+        public GreetingBL(IGreetingRL greetingRL)
+        {
+            _greetingRL = greetingRL;
+        }
 
         /// <summary>
         /// Retrieves the current greeting message with user attributes.
@@ -46,14 +53,7 @@ namespace BusinessLayer.Service
         /// <returns>ResponseModel with the newly set greeting message.</returns>
         public ResponseModel<string> AddGreetingBL(RequestModel requestModel)
         {
-            logger.Info($"Adding new greeting with Key: {requestModel.FirstName}, Value: {requestModel.LastName}");
-            _greetingMessage = $"{requestModel.FirstName} {requestModel.LastName}".Trim();
-            return new ResponseModel<string>
-            {
-                Success = true,
-                Data = _greetingMessage,
-                Message = $"Greeting message set successfully"
-            };
+            return _greetingRL.AddGreetingRL(requestModel);
         }
 
         /// <summary>

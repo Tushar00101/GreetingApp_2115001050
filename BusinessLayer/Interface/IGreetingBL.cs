@@ -15,5 +15,7 @@ namespace BusinessLayer.Interface
         ResponseModel<string> UpdateGreetingBL(RequestModel requestModel);
         ResponseModel<string> PartialUpdateGreetingBL(string newValue);
         ResponseModel<string> DeleteGreetingBL();
+
+        
     }
 }
