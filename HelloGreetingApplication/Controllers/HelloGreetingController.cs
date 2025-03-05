@@ -107,13 +107,14 @@ namespace HelloGreetingApplication.Controllers
         /// <summary>
         /// Delete method to delete the greeting message.
         /// </summary>
+        /// <param name="requestModel">to delete message from repo</param>
         /// <returns>Response Model confirming deletion</returns>
         [HttpDelete]
-        public IActionResult Delete()
+        public IActionResult Delete(RequestModel requestModel)
         {
             logger.Info("DELETE request received to remove the greeting message.");
             logger.Info("DELETE request processed successfully.");
-            return Ok(_greetingBL.DeleteGreetingBL());
+            return Ok(_greetingBL.DeleteGreetingBL(requestModel));
         }
     }
 }

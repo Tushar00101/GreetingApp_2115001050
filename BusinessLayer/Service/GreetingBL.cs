@@ -128,13 +128,13 @@ namespace BusinessLayer.Service
         /// <returns>ResponseModel confirming the partial update.</returns>
         public ResponseModel<UserEntity> PartialUpdateGreetingBL(RequestModel requestModel)
         {
-            logger.Info($"Partially updating greeting message to: {requestModel.Message}");
 
             var val = _greetingRL.PartialUpdateGreetingBL(requestModel);
             if (val == null)
             {
                 return new ResponseModel<UserEntity> { Success = false, Message = "No user of this id is founded", Data = null };
             }
+            logger.Info($"Partially updating greeting message to: {requestModel.Message}");
             return new ResponseModel<UserEntity> { Success = true, Message = "Message is updated", Data = val };
         }
 
@@ -142,16 +142,16 @@ namespace BusinessLayer.Service
         /// Deletes the greeting message and resets it to an empty string.
         /// </summary>
         /// <returns>ResponseModel confirming the deletion of the greeting message.</returns>
-        public ResponseModel<string> DeleteGreetingBL()
+        public ResponseModel<UserEntity> DeleteGreetingBL(RequestModel requestModel)
         {
-            logger.Info("Deleting greeting message.");
-            _greetingMessage = "";
-            return new ResponseModel<string>
+            var result=_greetingRL.DeleteGreetingRL( requestModel);
+            if (result == null)
             {
-                Success = true,
-                Data = "",
-                Message = "Greeting deleted successfully"
-            };
+                return new ResponseModel<UserEntity> { Success = false, Message = "User not found", Data = null };
+            }
+
+            logger.Info("Deleting greeting message.");
+            return new ResponseModel<UserEntity> { Success = true, Message = "Message deleted Successfully", Data = result };
         }
     }
 }
