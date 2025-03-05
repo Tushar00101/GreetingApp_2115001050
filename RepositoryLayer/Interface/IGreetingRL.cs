@@ -15,5 +15,7 @@ namespace RepositoryLayer.Interface
         UserEntity GetUserById(int id);
 
         public List<UserEntity> GetAllUsers();
+
+        UserEntity PartialUpdateGreetingBL(RequestModel requestModel);
     }
 }
