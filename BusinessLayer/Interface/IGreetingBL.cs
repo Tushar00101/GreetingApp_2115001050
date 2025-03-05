@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ModelLayer.Model;
+using RepositoryLayer.Entity;
 
 namespace BusinessLayer.Interface
 {
@@ -16,6 +17,8 @@ namespace BusinessLayer.Interface
         ResponseModel<string> PartialUpdateGreetingBL(string newValue);
         ResponseModel<string> DeleteGreetingBL();
 
-        
+        ResponseModel<UserEntity> GetUserById(int id);
+
+
     }
 }

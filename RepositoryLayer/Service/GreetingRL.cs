@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using ModelLayer.Model;
 using RepositoryLayer.Context;
 using RepositoryLayer.Entity;
@@ -56,6 +57,26 @@ namespace RepositoryLayer.Service
                 Data = $"Hello, {final}",
                 Message = "Greeting message saved successfully"
             };
+        }
+
+        /// <summary>
+        /// Retrieves a user by their unique ID.
+        /// </summary>
+        /// <param name="id">The unique identifier of the user.</param>
+        /// <returns>User entity if found; otherwise, null.</returns>
+        public UserEntity GetUserById(int id)
+        {
+            logger.Info($"Fetching user with ID: {id}");
+            var val = _context.Users.FirstOrDefault(x => x.Id == id);
+
+            if (val == null)
+            {
+                logger.Warn($"User with ID {id} not found.");
+                return null;
+            }
+
+            logger.Info($"User with ID {id} found.");
+            return val;
         }
     }
 }
