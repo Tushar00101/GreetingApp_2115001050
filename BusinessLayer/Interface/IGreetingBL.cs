@@ -19,6 +19,8 @@ namespace BusinessLayer.Interface
 
         ResponseModel<UserEntity> GetUserById(int id);
 
+        ResponseModel<List<UserEntity>> GetAllUsers();
+
 
     }
 }
