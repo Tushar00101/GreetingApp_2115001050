@@ -31,16 +31,17 @@ namespace RepositoryLayer.Service
         /// </summary>
         /// <param name="userDTO">Data transfer object containing user details.</param>
         /// <returns>Registered user entity if successful; otherwise, null.</returns>
-        public User RegisterRL(UserDTO userDTO)
+        public UserEntity RegisterRL(UserDTO userDTO)
         {
             logger.Info("Attempting to register new user with email: {0}", userDTO.Email);
 
             var existingUser = _context.Users.FirstOrDefault(e => e.Email == userDTO.Email);
             if (existingUser == null)
             {
-                var user = new User
+                var user = new UserEntity
                 {
                     Email = userDTO.Email,
+                    //Id=userDTO.Id
                     Password = PasswordHelper.HashPassword(userDTO.Password) ,  //userDTO.Password, // Consider encrypting the password before saving
                     FirstName = userDTO.FirstName,
                     LastName = userDTO.LastName,
@@ -62,7 +63,7 @@ namespace RepositoryLayer.Service
         /// </summary>
         /// <param name="loginDTO">Data transfer object containing login credentials.</param>
         /// <returns>User entity if credentials are valid; otherwise, null.</returns>
-        public User LoginRL(LoginDTO loginDTO)
+        public UserEntity LoginRL(LoginDTO loginDTO)
         {
             logger.Info("User login attempt with email: {0}", loginDTO.Email);
 

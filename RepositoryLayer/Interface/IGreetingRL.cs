@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using ModelLayer.Model;
 using RepositoryLayer.Entity;
 
@@ -10,14 +6,16 @@ namespace RepositoryLayer.Interface
 {
     public interface IGreetingRL
     {
-        ResponseModel<string> AddGreetingRL(RequestModel requestModel);
+        ResponseModel<string> AddGreetingRL(RequestModel requestModel, int userId);
 
-        UserEntity GetUserById(int id);
+        GreetingEntity GetGreetingById(int id);
 
-        public List<UserEntity> GetAllUsers();
+        List<GreetingEntity> GetAllGreetings(int userId);
 
-        UserEntity PartialUpdateGreetingBL(RequestModel requestModel);
+        GreetingEntity UpdateGreetingMessage(RequestModel requestModel, int userId);
 
-        public UserEntity DeleteGreetingRL(RequestModel requestModel);
+        GreetingEntity DeleteGreetingRL(RequestModel requestModel, int userId);
+
+        GreetingEntity UpdateGreeting(RequestModel requestModel, int userId);
     }
 }

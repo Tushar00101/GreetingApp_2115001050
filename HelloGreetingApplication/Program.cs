@@ -73,8 +73,10 @@ try
     //Exception
     builder.Services.AddControllers(options =>
     {
-        options.Filters.Add<GlobalExceptionFilter>(); // Register global exception filter
+        options.Filters.Add<GlobalExceptionHandler>(); // Register global exception filter
     });
+    // Add other services
+    builder.Services.AddScoped<GlobalExceptionHandler>();
 
     // Configure NLog
     builder.Logging.ClearProviders();
