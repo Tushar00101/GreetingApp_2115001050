@@ -1,29 +1,53 @@
-﻿using System;
-using Newtonsoft.Json;
-using NLog;
+﻿using System.Net;
+using Microsoft.AspNetCore.Http;
+using System.Text.Json;
+using Microsoft.Extensions.Logging;
+using System.Net.Http;
 
 namespace Middleware.GlobalExceptionHandler
 {
     public class ExceptionHandler
     {
-        private static readonly Logger _logger = LogManager.GetCurrentClassLogger();
+        private readonly RequestDelegate _next;
+        private readonly ILogger<ExceptionHandler> _logger;
 
-        public static string HandleException(Exception ex, out object errorResponse)
+        public ExceptionHandler(RequestDelegate next, ILogger<ExceptionHandler> logger)
         {
-            errorResponse = CreateErrorResponse(ex);
-            return JsonConvert.SerializeObject(errorResponse);
+            _next = next;
+            _logger = logger;
         }
 
-        public static object CreateErrorResponse(Exception ex)
+        public async Task InvokeAsync(HttpContext context)
         {
-            _logger.Error(ex, $"Exception Type: {ex.GetType().Name} | Message: {ex.Message}");
+            try
+            {
+                // Continue the request pipeline
+                await _next(context);
+            }
+            catch (Exception ex)
+            {
+                // Log the error
+                _logger.LogError(ex, "An error occurred in the application");
 
-            return new
+                // Handle the exception
+                await HandleExceptionAsync(context, ex);
+            }
+        }
+
+        private static Task HandleExceptionAsync(HttpContext context, Exception exception)
+        {
+            var errorResponse = new
             {
                 Success = false,
                 Message = "An unexpected error occurred. Please try again later.",
-                Error = ex.Message
+                Error = exception.Message
             };
+
+            var response = JsonSerializer.Serialize(errorResponse);
+            context.Response.ContentType = "application/json";
+            context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+
+            return context.Response.WriteAsync(response);
         }
     }
 }
