@@ -19,6 +19,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JWT", "JWT\JWT.csproj", "{5
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Email", "Email\Email.csproj", "{80A4A629-1F5E-46F1-9FA3-5C4018D6EE7B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RabbittMqConsumer", "RabbittMqConsumer\RabbittMqConsumer.csproj", "{E147DAE1-A6C4-4F55-A786-4F4990A0EF6D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RabbitProducer", "RabbitMqProducer\RabbitProducer.csproj", "{AAB00304-A1E5-4FF5-ABE5-48F9E055D5F7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -57,6 +61,14 @@ Global
 		{80A4A629-1F5E-46F1-9FA3-5C4018D6EE7B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{80A4A629-1F5E-46F1-9FA3-5C4018D6EE7B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{80A4A629-1F5E-46F1-9FA3-5C4018D6EE7B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E147DAE1-A6C4-4F55-A786-4F4990A0EF6D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E147DAE1-A6C4-4F55-A786-4F4990A0EF6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E147DAE1-A6C4-4F55-A786-4F4990A0EF6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E147DAE1-A6C4-4F55-A786-4F4990A0EF6D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AAB00304-A1E5-4FF5-ABE5-48F9E055D5F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AAB00304-A1E5-4FF5-ABE5-48F9E055D5F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AAB00304-A1E5-4FF5-ABE5-48F9E055D5F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AAB00304-A1E5-4FF5-ABE5-48F9E055D5F7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

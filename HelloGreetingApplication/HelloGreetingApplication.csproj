@@ -22,6 +22,8 @@
     <ProjectReference Include="..\Email\Email.csproj" />
     <ProjectReference Include="..\JWT\JWT.csproj" />
     <ProjectReference Include="..\Middleware\Middleware.csproj" />
+    <ProjectReference Include="..\RabbitMqProducer\RabbitProducer.csproj" />
+    <ProjectReference Include="..\RabbittMqConsumer\RabbittMqConsumer.csproj" />
   </ItemGroup>
 
 </Project>
