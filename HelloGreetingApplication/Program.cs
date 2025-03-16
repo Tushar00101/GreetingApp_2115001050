@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using JWT.Service;
+//using Email.Service;
 
 var logger = LogManager.Setup().LoadConfigurationFromFile("nlog.config").GetCurrentClassLogger();
 logger.Info("Application is starting...");
@@ -23,6 +24,8 @@ try
     var connectionString=builder.Configuration.GetConnectionString("SqlConnections");
     builder.Services.AddDbContext<UserContext>(options => options.UseSqlServer(connectionString));
 
+    //Email
+    builder.Services.AddSingleton<EmailService>();
     builder.Services.AddScoped<IGreetingBL, GreetingBL>();
     builder.Services.AddScoped<IGreetingRL, GreetingRL>();
     builder.Services.AddScoped<IUserBL, UserBL>();

@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Middleware", "Middleware\Mi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JWT", "JWT\JWT.csproj", "{56C383C1-655A-48B3-B652-5B405CC3A1EF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Email", "Email\Email.csproj", "{80A4A629-1F5E-46F1-9FA3-5C4018D6EE7B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{56C383C1-655A-48B3-B652-5B405CC3A1EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{56C383C1-655A-48B3-B652-5B405CC3A1EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{56C383C1-655A-48B3-B652-5B405CC3A1EF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{80A4A629-1F5E-46F1-9FA3-5C4018D6EE7B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{80A4A629-1F5E-46F1-9FA3-5C4018D6EE7B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{80A4A629-1F5E-46F1-9FA3-5C4018D6EE7B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{80A4A629-1F5E-46F1-9FA3-5C4018D6EE7B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

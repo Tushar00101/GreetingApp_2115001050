@@ -102,5 +102,16 @@ namespace RepositoryLayer.Service
             logger.Info("Password reset request successful for email: {0}", forgetDTO.Email);
             return true;
         }
+
+        public bool UpdateUserPassword(string email,ResetDTO resetDTO)
+        {
+            var user=_context.Users.FirstOrDefault(e=>e.Email == email);
+            if(user == null) return false;
+
+            user.Password=PasswordHelper.HashPassword(resetDTO.Password);
+            _context.Users.Update(user);
+            _context.SaveChanges();
+            return true;
+        }
     }
 }
